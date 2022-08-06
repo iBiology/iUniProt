@@ -18,6 +18,7 @@ session.mount("https://", HTTPAdapter(max_retries=retries))
 
 
 def submit_id_mapping(from_db, to_db, ids):
+    # 'taxId=9606'
     request = requests.post(f"{API_URL}/idmapping/run", data={"from": from_db, "to": to_db, "ids": ",".join(ids)})
     request.raise_for_status()
     return request.json()["jobId"]
